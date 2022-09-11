@@ -2,6 +2,7 @@ package web.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import web.dao.UserRepository;
 import web.model.User;
 import java.util.List;
@@ -16,6 +17,7 @@ public class UserServiceImpl implements UserService {
         this.userRepository = userRepository;
     }
 
+    @Transactional
     @Override
     public void addUser(User user) {
         userRepository.save(user);
@@ -26,11 +28,13 @@ public class UserServiceImpl implements UserService {
         return userRepository.findAll();
     }
 
+    @Transactional
     @Override
     public void updateUser(User user) {
         userRepository.save(user);
     }
 
+    @Transactional
     @Override
     public void deleteUserById(long id) {
         userRepository.deleteById(id);
